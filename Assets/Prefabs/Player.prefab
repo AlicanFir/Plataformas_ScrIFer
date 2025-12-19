@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 1390224647486141742}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +104,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe8cdff259f66f642b23d86ee88c8abd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AtackSystem
-  cooldown: 2
+  cooldown: 1
+  attackRadius: 1
+  attackPoint: {fileID: 7191114286264442100}
+  whatIsDamageable:
+    serializedVersion: 2
+    m_Bits: 55
 --- !u!50 &2929298904022722096
 Rigidbody2D:
   serializedVersion: 5

@@ -5678,7 +5678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a06a46e8d2046a4e883935c1d47f4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slime
-  health: 0
+  health: 20
 --- !u!1 &1385452556
 GameObject:
   m_ObjectHideFlags: 0
@@ -6475,6 +6475,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2293457558366237027, guid: 7be1600e9966ef247a91982e358a1920, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186696645659816516, guid: 7be1600e9966ef247a91982e358a1920, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186696645659816516, guid: 7be1600e9966ef247a91982e358a1920, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186696645659816516, guid: 7be1600e9966ef247a91982e358a1920, type: 3}
+      propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6646776470767401862, guid: 7be1600e9966ef247a91982e358a1920, type: 3}

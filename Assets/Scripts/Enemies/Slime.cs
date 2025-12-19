@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Slime : MonoBehaviour, IDahable
@@ -15,23 +16,32 @@ public class Slime : MonoBehaviour, IDahable
     
     public void TakeDamage(GameObject dealer, float damage)
     {
-        Vector3 knockBackDirection = dealer.transform.position - transform.position;
+        Vector3 knockBackDirection = transform.position - dealer.transform.position;
+        knockBackDirection.y = 0;
         
+        StartCoroutine(KnockBack(knockBackDirection));
         
-        KnockBack(knockBackDirection);
         health -= damage;
         if (health <= 0)
         {
+            GameManager.instance.SavedScore += 100;
             Destroy(gameObject);
         }
     }
 
-    private void KnockBack(Vector3 knockBackDirection)
+    private IEnumerator KnockBack(Vector3 knockBackDirection)
     {
+        Debug.Log("KnockBack");
+        rb.linearVelocity = Vector3.zero; // cancelo la velocidad
         rb.bodyType = RigidbodyType2D.Dynamic; //ahora tengo fisicas
-        rb.AddForce(knockBackDirection * 10f, ForceMode2D.Impulse);
+        rb.AddForce(knockBackDirection.normalized * 10f, ForceMode2D.Impulse);
         
+        yield return new WaitForSeconds(0.15f);
+        
+        rb.linearVelocity = Vector3.zero; // cancelo la velocidad
+        rb.bodyType = RigidbodyType2D.Kinematic; // volvemos a no tener fisicas
     }
+    
     
     
 }

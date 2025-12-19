@@ -5,8 +5,14 @@ public class Player : MonoBehaviour, IDahable
 {
     public event Action<float> seActualizaMovimiento; //notificacion, evento.
     //entre las flechas indico si el invoke puede pasar cosas
-    
-    
+
+    private void Start()
+    {
+        transform.position = GameManager.instance.SavedPosition;
+        transform.eulerAngles = GameManager.instance.SavedRotation;
+        //Debug.Break(); //cuando el codigo pasa para el motor
+    }
+
 
     public void ActualizaMovimiento(float hInput)
     {
