@@ -7,6 +7,7 @@ public class PlayerMovementSystem : PlayerSystem
     private float hInput;
     private Rigidbody2D rb;
     private Animator animator;
+    private bool canJump;
 
     [SerializeField] private float movementForce;
     [SerializeField] private float jumpForce;
@@ -41,9 +42,26 @@ public class PlayerMovementSystem : PlayerSystem
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Floor"))
+        {
+            canJump = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Floor"))
+        {
+            canJump = false;
+        }
+    }
+    
+
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
