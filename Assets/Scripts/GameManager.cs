@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public float SavedScore { get; set; }
-    public float SavedHealth { get; } = 100;
+    public float SavedHealth { get; set; } = 10;
 
     private void Awake()
     {

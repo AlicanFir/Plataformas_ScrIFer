@@ -4,6 +4,7 @@ using System.Collections;
 public class Bat : MonoBehaviour, IDahable
 {
     [SerializeField] private float health;
+    [SerializeField] private AudioClip hitSound;
 
     private Rigidbody2D rb;
 
@@ -30,7 +31,7 @@ public class Bat : MonoBehaviour, IDahable
 
     private IEnumerator KnockBack(Vector3 knockBackDirection)
     {
-        Debug.Log("KnockBack");
+        //Debug.Log("KnockBack");
         rb.linearVelocity = Vector3.zero; // cancelo la velocidad
         rb.bodyType = RigidbodyType2D.Dynamic; //ahora tengo fisicas
         rb.AddForce(knockBackDirection.normalized * 10f, ForceMode2D.Impulse);
@@ -39,5 +40,6 @@ public class Bat : MonoBehaviour, IDahable
         
         rb.linearVelocity = Vector3.zero; // cancelo la velocidad
         rb.bodyType = RigidbodyType2D.Kinematic; // volvemos a no tener fisicas
+        AudioManager.instance.PlaySFX(hitSound);
     }
 }

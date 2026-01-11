@@ -9,12 +9,13 @@ public class Player : MonoBehaviour, IDahable
     public event Action<float> seActualizaMovimiento; //notificacion, evento.
     //entre las flechas indico si el invoke puede pasar cosas
     
-    private float maxHealth = 10;
+    private float maxHealth;
     private float currentHealth;
     private bool isPauseMenuUp;
 
     [SerializeField] private GameObject gameOverMenu;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private TMPro.TMP_Text healthText;
 
     private void Awake()
     {
@@ -26,7 +27,8 @@ public class Player : MonoBehaviour, IDahable
         transform.position = GameManager.instance.SavedPosition;
         transform.eulerAngles = GameManager.instance.SavedRotation;
         //Debug.Break(); //cuando el codigo pasa para el motor
-        currentHealth = maxHealth;
+        Debug.Log(GameManager.instance.SavedHealth);
+        currentHealth = GameManager.instance.SavedHealth; 
         
         pauseMenu.SetActive(false);
         isPauseMenuUp = false;
@@ -63,7 +65,15 @@ public class Player : MonoBehaviour, IDahable
         yield return new WaitForSecondsRealtime(0.2f);
         isPauseMenuUp = true;
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent<LevelPortal>(out LevelPortal portal))
+        {
+            GameManager.instance.SavedHealth = currentHealth;
+            Debug.Log("Health entered");
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -82,19 +92,20 @@ public class Player : MonoBehaviour, IDahable
         seActualizaMovimiento?.Invoke(hInput); // "?" null safety, si tienes suscriptores ps lo lanza si no no explota
     }
 
-    public void TakeDamage(GameObject o, float damage)
+    public void TakeDamage(GameObject o, float damage) //EL JUGADOR RECIBE DAÑO
     {
         if (o != null)
         {
             if (o.TryGetComponent<Bat>(out Bat bat))
             {
                 currentHealth -= damage;
+                healthText.text = currentHealth.ToString();
+                
             }
-
             if (o.TryGetComponent<Slime>(out Slime slime))
             {
                 currentHealth -= damage;
-                Debug.Log(currentHealth);
+                healthText.text = currentHealth.ToString();
             }
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Slime : MonoBehaviour, IDahable
 {
     [SerializeField] private float health;
+    [SerializeField] private AudioClip hitSound;
 
     private Rigidbody2D rb;
 
@@ -40,6 +41,7 @@ public class Slime : MonoBehaviour, IDahable
         
         rb.linearVelocity = Vector3.zero; // cancelo la velocidad
         rb.bodyType = RigidbodyType2D.Kinematic; // volvemos a no tener fisicas
+        AudioManager.instance.PlaySFX(hitSound);
     }
     
     

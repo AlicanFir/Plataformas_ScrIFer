@@ -57,6 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   gameOverMenu: {fileID: 0}
   pauseMenu: {fileID: 0}
+  healthText: {fileID: 0}
 --- !u!114 &6985094490000726761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,6 +114,7 @@ MonoBehaviour:
   whatIsDamageable:
     serializedVersion: 2
     m_Bits: 55
+  hitSound: {fileID: 8300000, guid: 930537c50c5dee74183a8c5a75cf3722, type: 3}
 --- !u!50 &2929298904022722096
 Rigidbody2D:
   serializedVersion: 5

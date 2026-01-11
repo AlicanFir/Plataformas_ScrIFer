@@ -7,6 +7,7 @@ public class PlayerAttackSystem : PlayerSystem //hereda de playerSystem
     [SerializeField] private float attackRadius = 0.5f;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask whatIsDamageable;
+    [SerializeField] private AudioClip hitSound;
     
     private Animator animator;
 
