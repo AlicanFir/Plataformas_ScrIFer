@@ -29,6 +29,7 @@ public class Player : MonoBehaviour, IDahable
         //Debug.Break(); //cuando el codigo pasa para el motor
         Debug.Log(GameManager.instance.SavedHealth);
         currentHealth = GameManager.instance.SavedHealth; 
+        healthText.text = currentHealth.ToString();
         
         pauseMenu.SetActive(false);
         isPauseMenuUp = false;
